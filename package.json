@@ -1,0 +1,23 @@
+{
+  "name": "slush-tag",
+  "version": "0.1.0",
+  "description": "Gerador de projeto básico. Usando HTML5 Boilerplate e Compass",
+  "main": "slushfile.js",
+  "keywords": [
+    "slushgenerator",
+    "Boilerplate",
+    "h5bp",
+    "compass"
+  ],
+  "dependencies": {
+    "gulp": "~3.5.6",
+    "gulp-template": "~0.1.1",
+    "gulp-install": "~0.1.1",
+    "gulp-conflict": "~0.1.1",
+    "gulp-rename": "~1.2.0",
+    "underscore.string": "~2.3.3",
+    "inquirer": "~0.4.1"
+  },
+  "author": "Julio Ghisloti",
+  "license": "MIT"
+}
