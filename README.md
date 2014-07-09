@@ -18,7 +18,7 @@ Após isso, iremos instalar o Slush
 
 	$ npm install slush -g
 
-Até aqui ok, Certo? Blz. Então vamos clonar esse repositorio e cirar um link para chamar essa slush na nossa maquina (como foi mostrado no post do Giogo)
+Até aqui ok, Certo? Blz. Então vamos clonar esse repositorio e criar um link para chamar essa slush na nossa maquina (como foi mostrado no post do Diogo)
 
 	$ git clone https://github.com/julioghisloti/slush-tag.git && cd slush-tag
 	$ npm link .
