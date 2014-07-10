@@ -1,4 +1,4 @@
-#Gerador de projeto básico usando HTML5 Boilerplate, Compass, tinyPNG, Uglify e CSS Minify 
+#Slush generator com HTML5 Boilerplate e Gulp file usando Compass, tinyPNG, Uglify e CSS Minify 
 
 ### Gulpjs + Slush for the win O/
 
@@ -10,11 +10,16 @@ Até aqui você já percebeu que o Slush não é algo revolucionário super foda
 
 
 ## Como eu uso isso?
-Primeiro de tudo, você deve instalar o Gulp na sua maquina
+Primeiro de tudo, você deve instalar o Nodejs (http://nodejs.org/) na sua maquina (caso você não tenha)
+
+	//com Homebrew fica mais fácil :)
+	$ brew install node
+
+Após isso, iremos instalar o Gulp
 
 	$ npm install gulp -g
 	
-Após isso, iremos instalar o Slush
+E agora o Slush
 
 	$ npm install slush -g
 
