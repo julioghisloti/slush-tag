@@ -3,8 +3,9 @@ var gutil     = require('gulp-util');
 var uglify    = require('gulp-uglify');
 var compass   = require('gulp-compass');
 var minifyCSS = require('gulp-minify-css');
-var imagemin  = require('gulp-tinypng');
+var tinypng   = require('gulp-tinypng');
 var plumber   = require('gulp-plumber');
+var changed   = require('gulp-changed');
 var watch     = require('gulp-watch');
 
 //compass error
@@ -39,9 +40,10 @@ gulp.task('compass', function(){
 
 //tinypng
 gulp.task('tinypng', function () {
-    gulp.src('src/image.png')
-        .pipe(tingpng('A8jRVkt_xBCIAb6KcTGHay0t7mVG401_'))
-        .pipe(gulp.dest('dist'));
+    gulp.src('src/img/*.png')
+        .pipe(tinypng('A8jRVkt_xBCIAb6KcTGHay0t7mVG401_'))
+        .pipe(changed('src/img/*.png'))
+        .pipe(gulp.dest('build/img'));
 });
 
 //watch
