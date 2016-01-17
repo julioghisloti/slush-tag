@@ -1,13 +1,13 @@
 {
   "name": "slush-tag",
   "version": "0.1.0",
-  "description": "Gerador de projeto básico. Usando HTML5 Boilerplate e Compass",
+  "description": "Gerador de projeto básico. Usando HTML5 Boilerplate e Stylus",
   "main": "slushfile.js",
   "keywords": [
     "slushgenerator",
     "Boilerplate",
     "h5bp",
-    "compass"
+    "stylus"
   ],
   "dependencies": {
     "gulp": "~3.5.6",

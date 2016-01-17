@@ -1,12 +1,14 @@
-var gulp      = require('gulp');
-var gutil     = require('gulp-util');
-var uglify    = require('gulp-uglify');
-var compass   = require('gulp-compass');
-var minifyCSS = require('gulp-minify-css');
-var tinypng   = require('gulp-tinypng');
-var plumber   = require('gulp-plumber');
-var changed   = require('gulp-changed');
-var watch     = require('gulp-watch');
+var gulp        = require('gulp');
+var gutil       = require('gulp-util');
+var stylus      = require('gulp-stylus');
+var nib         = require('nib');
+var jeet        = require('jeet');
+var uglify      = require('gulp-uglify');
+var plumber     = require('gulp-plumber');
+var imagemin    = require('gulp-imagemin');
+var pngquant    = require('imagemin-pngquant');
+var watch       = require('gulp-watch');
+var browserSync = require('browser-sync').create();
 
 //compass error
 var onError = function (err) {  
@@ -14,59 +16,47 @@ var onError = function (err) {
   console.log(err);
 };
 
+// Static Server + watching stylus/html files
+gulp.task('serve', ['stylus'], function() {
+
+    browserSync.init({
+       proxy: "localhost:1337/APP_NAME"
+    });
+
+    gulp.watch("src/styl/**/*.styl", ['stylus']);
+    gulp.watch("src/js/*.js", ['scripts']);
+    gulp.watch("src/img/**/*.png", ['img']);
+    gulp.watch("*.html").on('change', browserSync.reload);
+
+});
+
+gulp.task('default', ['serve']);
+
 //minificando js
 gulp.task('scripts', function(){
-    return gulp  
-        .src(['src/js/*.js'])
+    return gulp.src('src/js/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('build/js'));
+        .pipe(gulp.dest('build/js/'))
+        .pipe(browserSync.stream());
 });
 
-//COMPASS
-gulp.task('compass', function(){
-    gulp.src('./src/scss/*.scss')
-        .pipe(plumber({
-          errorHandler: onError
+//stylus
+gulp.task('stylus', function(){
+    gulp.src('src/styl/*.styl')
+        .pipe(stylus({
+            use: [nib(), jeet()],
+            compress: true
         }))
-        .pipe(compass({
-            css: 'src/css',
-            sass: 'src/scss',
-            image: 'src/img'
-        }))
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('build/css'));
+        .pipe(gulp.dest('build/css'))
+        .pipe(browserSync.stream());
 });
 
-
-//tinypng
-gulp.task('tinypng', function () {
-    gulp.src('src/img/*.png')
-        .pipe(tinypng('A8jRVkt_xBCIAb6KcTGHay0t7mVG401_'))
-        .pipe(changed('src/img/*.png'))
+//imagens
+gulp.task('img', function(){
+    return gulp.src('src/img/*')
+        .pipe(imagemin({
+            progressive: true,
+            use: [pngquant()]
+        }))
         .pipe(gulp.dest('build/img'));
-});
-
-//watch
-gulp.task('watch', function(){
-
-
-    //Scripts
-    gulp.watch('src/js/**/*.js', function(event) {
-        gutil.log('Minificando seu JS ......');
-        gulp.run('scripts');
-    });
-
-    //Compass
-    gulp.watch('src/scss/*.scss', function(event) {
-        gutil.log('Compilando o seu compass ......');
-        gulp.run('compass');
-    });
-
-
-    //imagemin
-    gulp.watch('src/img/*.png', function(event){
-         gutil.log('Tiny PNG minificando seus PNGs ......');
-        gulp.run('tinypng');
-    });
-
-});
+})

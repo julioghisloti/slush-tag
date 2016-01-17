@@ -1,4 +1,4 @@
-#Slush generator com HTML5 Boilerplate e Gulp file usando Compass, tinyPNG, Uglify e CSS Minify 
+#Slush generator com HTML5 Boilerplate e Gulp file usando Stylus, Live Reload, JQuery, Modernizr
 
 ### Gulpjs + Slush for the win O/
 
@@ -10,12 +10,7 @@ Até aqui você já percebeu que o Slush não é algo revolucionário super foda
 
 
 ## Como eu uso isso?
-Primeiro de tudo, você deve instalar o Nodejs (http://nodejs.org/) na sua maquina (caso você não tenha)
-
-	//com Homebrew fica mais fácil :)
-	$ brew install node
-
-Após isso, iremos instalar o Gulp
+Instale o Gulp
 
 	$ npm install gulp -g
 	
@@ -25,8 +20,7 @@ E agora o Slush
 
 Até aqui ok, Certo? Blz. Então vamos clonar esse repositorio e criar um link para chamar essa slush na nossa maquina (como foi mostrado no post do Diogo)
 
-	$ git clone https://github.com/julioghisloti/slush-tag.git && cd slush-tag
-	$ npm link .
+	$ git clone https://github.com/julioghisloti/slush-tag.git && cd slush-tag && npm install && npm link .
 	
 PRONTO! Já está tudo certo. Agora, quando for fazer um projeto que irá usar essas dependências, é só criar uma pasta e chamar essa Slush. Veja:
 	
